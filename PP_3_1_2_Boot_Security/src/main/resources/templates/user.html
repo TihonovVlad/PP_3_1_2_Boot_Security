@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Page</title>
+    <style>
+        .user-data {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            max-width: 500px;
+        }
+        .data-row {
+            margin: 10px 0;
+        }
+        .logout-btn {
+            margin-top: 20px;
+            padding: 8px 15px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .logout-btn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome, <span th:text="${user.username}">User</span>!</h1>
+
+<div class="user-data">
+    <h2>Your Profile Information:</h2>
+
+    <div class="data-row">
+        <strong>ID:</strong> <span th:text="${user.id}"></span>
+    </div>
+
+    <div class="data-row">
+        <strong>Username:</strong> <span th:text="${user.username}"></span>
+    </div>
+
+    <div class="data-row">
+        <strong>Surname:</strong> <span th:text="${user.surname}"></span>
+    </div>
+
+    <div class="data-row">
+        <strong>Age:</strong> <span th:text="${user.age}"></span>
+    </div>
+</div>
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" class="logout-btn" value="Logout"/>
+</form>
+</body>
+</html>
