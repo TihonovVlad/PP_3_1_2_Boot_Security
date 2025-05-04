@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en,ru">
+<head>
+    <meta charset="UTF-8">
+    <title>User Page</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-dark mb-4">
+    <div class="container-fluid">
+        <span class="navbar-text text-white">
+            Привет, <span th:text="${user.username}">User</span>!
+        </span>
+        <form th:action="@{/logout}" method="post" class="d-flex">
+            <button class="btn btn-outline-light" type="submit">Выйти</button>
+        </form>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="card mx-auto" style="max-width: 600px;">
+        <div class="card-header bg-primary text-white">
+            Информация о твоем профиле
+        </div>
+        <div class="card-body">
+            <p class="card-text"><strong>ID:</strong> <span th:text="${user.id}"></span></p>
+            <p class="card-text"><strong>Имя:</strong> <span th:text="${user.username}"></span></p>
+            <p class="card-text"><strong>Фамилия:</strong> <span th:text="${user.surname}"></span></p>
+            <p class="card-text"><strong>Возраст:</strong> <span th:text="${user.age}"></span></p>
+            <p class="card-text"><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+            <p class="card-text"><strong>Роль:</strong> <span th:text="${user.roles}"></span></p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

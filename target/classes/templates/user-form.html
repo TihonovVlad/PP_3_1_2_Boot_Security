@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en,ru">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${user.id != null} ? 'Edit User' : 'Add User'">User Form</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white">
+            <h3 class="mb-0" th:text="${user.id != null} ? 'Edit User' : 'Add New User'"></h3>
+        </div>
+        <div class="card-body">
+
+            <form th:action="${user.id != null} ? @{/admin/update} : @{/admin/add}" method="post" th:object="${user}">
+
+                <input type="hidden" th:if="${user.id != null}" name="id" th:value="${user.id}"/>
+
+                <div class="mb-3">
+                    <label for="username" class="form-label">Имя</label>
+                    <input type="text" id="username" th:field="*{username}" class="form-control" required>
+                    <div th:if="${#fields.hasErrors('username')}" class="text-danger small" th:errors="*{username}"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label" th:text="${user.id != null} ? 'New Password (optional)' : 'Password'">Пароль</label>
+                    <input type="password" id="password" name="password" th:required="${user.id == null}" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label for="surname" class="form-label">Фамилия</label>
+                    <input type="text" id="surname" th:field="*{surname}" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" id="email" th:field="*{email}" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label for="age" class="form-label">Возраст</label>
+                    <input type="number" id="age" th:field="*{age}" min="1" class="form-control">
+                    <div th:if="${#fields.hasErrors('age')}" class="text-danger small" th:errors="*{age}"></div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Роль</label>
+                    <div class="form-check" th:each="role : ${allRoles}">
+                        <input class="form-check-input" type="checkbox"
+                               th:id="${'role_' + role.id}" th:name="roleIds"
+                               th:value="${role.id}" th:checked="${user.roles != null and #lists.contains(user.roles, role)}">
+                        <label class="form-check-label" th:for="${'role_' + role.id}" th:text="${role.name}"></label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100" th:text="${user.id != null} ? 'Обновить пользователя' : 'Срздать пользователя'"></button>
+            </form>
+
+            <div class="mt-3 text-center">
+                <a th:href="@{/admin}" class="btn btn-outline-secondary">← Вернуться в Панель Администратора</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

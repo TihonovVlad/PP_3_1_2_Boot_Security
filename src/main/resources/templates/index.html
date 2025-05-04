@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spring Security Example</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .btn-custom {
+      width: 100%;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Welcome to Index PAGE!</h1>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <!-- Admin Panel Link -->
+      <div>
+        <a href="/admin" th:href="@{/admin}" class="btn btn-primary btn-custom">Admin Panel</a>
+      </div>
+
+      <!-- User Panel Link -->
+      <div>
+        <a href="/user" th:href="@{/user}" class="btn btn-success btn-custom">User Panel</a>
+      </div>
+
+      <!-- Login Page Link -->
+      <div>
+        <a href="/login" th:href="@{/login}" class="btn btn-warning btn-custom">Login Page</a>
+      </div>
+
+      <!-- Logout Link -->
+      <div>
+        <a href="/logout" th:href="@{/logout}" class="btn btn-danger btn-custom">Exit</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
